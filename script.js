@@ -28,7 +28,7 @@ const typeController = (e) => {
     userText = userText.slice(0, userText.length - 1);
     return display.removeChild(display.lastChild);
   }
-
+  
   // these are the valid character we are allowing to type
   const validLetters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890!@#$%^&*()_+-={}[]'\".,?";
@@ -39,6 +39,7 @@ const typeController = (e) => {
   }
 
   userText += newLetter;
+ 
 
   const newLetterCorrect = validate(newLetter);
 
@@ -46,15 +47,18 @@ const typeController = (e) => {
     display.innerHTML += `<span class="green">${newLetter === " " ? "▪" : newLetter}</span>`;
   } else {
     display.innerHTML += `<span class="red">${newLetter === " " ? "▪" : newLetter}</span>`;
+    errorCount ++;
   }
 
   // check if given question text is equal to user typed text
   if (questionText === userText) {
     gameOver();
   }
+  
 };
 
 const validate = (key) => {
+
   if (key === questionText[userText.length - 1]) {
     return true;
   }
@@ -68,7 +72,7 @@ const gameOver = () => {
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
   const timeTaken = (finishTime - startTime) / 1000;
-
+    
   // show result modal
   resultModal.innerHTML = "";
   resultModal.classList.toggle("hidden");
