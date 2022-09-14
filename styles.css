@@ -193,6 +193,8 @@ button {
   }
   #histories {
     display: flex;
-    grid-template-columns: repeat(3,1fr);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
 }
